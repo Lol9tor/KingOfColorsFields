@@ -1,0 +1,35 @@
+$main-color: #e9e9e9;
+
+@import './normalize.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $main-color;
+}
+
+#wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#colorsPanel {
+  display: inline-block;
+  margin-left: 25px;
+  position: relative;
+}
+
+#panelButtonWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#panelButtonWrapper {
+  div {
+    margin: 5px 10px 5px 10px;
+  }
+}
