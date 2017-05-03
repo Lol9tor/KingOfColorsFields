@@ -14,17 +14,17 @@ export default class Field {
 }
 
 Field.prototype.createField = function () {
-	for (var i = 0; i < this.width; i++) {
+	for (let i = 0; i < this.width; i++) {
 		this.cells[i] = [];
-		for (var j = 0; j < this.height; j++) {
-			var cell = new Cell({x: i, y: j}, getRandomArrayElement(this.colors));
+		for (let j = 0; j < this.height; j++) {
+			let cell = new Cell({x: i, y: j}, getRandomArrayElement(this.colors));
 			this.cells[i].push(cell);
 		}
 	}
 
-	var numberOfBonuses = parseInt(this.width * this.height * this.FREQUANCY_BONUSES);
-	for (i = 0; i < numberOfBonuses; i++) {
-		var bonusCellX = Math.floor(Math.random() * this.cells.length),
+	const numberOfBonuses = parseInt(this.width * this.height * this.FREQUANCY_BONUSES);
+	for (let i = 0; i < numberOfBonuses; i++) {
+		const bonusCellX = Math.floor(Math.random() * this.cells.length),
 			bonusCellY = Math.floor(Math.random() * this.cells[i].length);
 		if (this.cells[bonusCellX][bonusCellY].owner === null) {
 			this.cells[bonusCellX][bonusCellY].bonus = getRandomArrayElement(this.bonuses);

@@ -1,16 +1,18 @@
-export default function Drawer(field, handlers) {
-	this.cellSize = 30;
-	this.field = field;
-	this.canvas = null;
-	this.colorsPanel = null;
-	this.width = field.width * this.cellSize;
-	this.height = field.height * this.cellSize;
-	this.handlers = handlers;
-	this.initializeDrawing();
+export default class Drawer {
+	constructor(field, handlers) {
+		this.cellSize = 25;
+		this.field = field;
+		this.canvas = null;
+		this.colorsPanel = null;
+		this.width = field.width * this.cellSize;
+		this.height = field.height * this.cellSize;
+		this.handlers = handlers;
+		// this.initializeDrawing();
+	}
 }
 
 Drawer.prototype.initializeDrawing = function () {
-	var canvasEl = document.createElement('canvas'),
+	const canvasEl = document.createElement('canvas'),
 		wrapperElement = document.createElement('div');
 	wrapperElement.setAttribute('id', 'wrapper');
 	canvasEl.width = this.width;
@@ -29,9 +31,9 @@ Drawer.prototype.initializeDrawing = function () {
 };
 
 Drawer.prototype.drawField = function () {
-	for (var i = 0; i < this.field.cells.length; i++) {
-		for (var j = 0; j < this.field.cells[i].length; j++) {
-			var obj = this.field.cells[i][j],
+	for (let i = 0; i < this.field.cells.length; i++) {
+		for (let j = 0; j < this.field.cells[i].length; j++) {
+			let obj = this.field.cells[i][j],
 				x = i * this.cellSize,
 				y = j * this.cellSize;
 			this.canvas.fillStyle = obj.currentColor;
@@ -41,10 +43,10 @@ Drawer.prototype.drawField = function () {
 };
 
 Drawer.prototype.drawColorPanel = function () {
-	var panelButtonWrapper = document.createElement('div');
+	const panelButtonWrapper = document.createElement('div');
 	panelButtonWrapper.setAttribute('id', 'panelButtonWrapper');
-	for (var i = 0; i < this.field.colors.length; i++) {
-		var panelButton = document.createElement('div');
+	for (let i = 0; i < this.field.colors.length; i++) {
+		const panelButton = document.createElement('div');
 		panelButton.setAttribute('data-color', this.field.colors[i]);
 		panelButton.style.height = this.cellSize * 2 + 'px';
 		panelButton.style.width = this.cellSize * 2 + 'px';
