@@ -5,7 +5,7 @@ export default class Field {
 	constructor(w, h) {
 		this.width = w || 20;
 		this.height = h || 20;
-		this.colors = ['red', 'blue', 'green', 'gold', 'magenta', 'chocolate', 'indigo'];
+		this.colors = ['red', 'blue', 'green', '#FDD835', 'magenta', '#546e7a', 'indigo'];
 		this.bonuses = ['bomb', 'freeze', 'mixCells', 'newCells', 'night'];
 		this.FREQUANCY_BONUSES = 0.025;
 		this.cells = [];

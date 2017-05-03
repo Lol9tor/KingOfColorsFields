@@ -67,7 +67,7 @@ KingOfColors.prototype.checkNearestCells = function (cell, cellsArray) {
 };
 
 KingOfColors.prototype.isCellExist = function (x, y, arr) {
-	return x >= 0 && y >= 0 && x < arr.length && y < arr[0].length;
+	return x >= 0 && y >= 0 && x < arr.length && y < arr[x].length;
 };
 
 KingOfColors.prototype.isNextCellApproach = function (currentCell, nextCell) {
