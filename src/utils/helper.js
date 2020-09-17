@@ -1,5 +1,5 @@
 export function getUniqueId() {
-	return Date.now() + "_" + (Math.random()*Math.pow(10, 16)).toString(16);
+	return Date.now() + "_" + (Math.random()*Math.pow(10, 17)).toString(16);
 }
 
 export function getRandomArrayElement (array) {
