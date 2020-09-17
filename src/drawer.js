@@ -1,6 +1,6 @@
 export default class Drawer {
 	constructor(game, handlers) {
-		this.cellSize = 25;
+		this.cellSize = 30;
 		this.field = game.field;
 		this.game = game;
 		this.canvas = null;
@@ -42,7 +42,7 @@ Drawer.prototype.drawField = function () {
 				x = i * this.cellSize,
 				y = j * this.cellSize;
 			this.canvas.fillStyle = obj.currentColor;
-			this.canvas.fillRect(x, y, 0.9 * this.cellSize, 0.9 * this.cellSize); //for making margins between cells
+			this.canvas.fillRect(x, y, 0.93 * this.cellSize, 0.93 * this.cellSize); //for making margins between cells
 		}
 	}
 };
