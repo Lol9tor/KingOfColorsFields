@@ -19,7 +19,6 @@ class Controller {
 		this.currentPlayerTurn = this.kingOfColors.players[0];//getRandomArrayElement(this.kingOfColors.players).player;
 		this.drawer.initializeDrawing();
 		this.drawer.render(this.currentPlayerTurn);
-		console.log(this.kingOfColors.players);
 	}
 
 	playerTurn (color) {

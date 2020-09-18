@@ -36,27 +36,33 @@ export default class Drawer {
 		rootEl.appendChild(title);
 		rootEl.appendChild(wrapperElement);
 
-		canvasEl.addEventListener('mousedown', this.handleMouseDown);
-		window.addEventListener('mouseup', this.handleMouseUp);
+		canvasEl.addEventListener('mousedown', this.handleMouseDown.bind(this));
+		window.addEventListener('mouseup', this.handleMouseUp.bind(this));
 	}
 
 	handleMouseDown () {
 		this.playersViewMode = true;
+		this.drawField();
 	}
 
 	handleMouseUp () {
 		if (this.playersViewMode) {
-			this.playersViewMode = false;		
+			this.playersViewMode = false;	
+			this.drawField();	
 		}
 	}
 
 	drawField () {
 		for (let i = 0; i < this.field.cells.length; i++) {
 			for (let j = 0; j < this.field.cells[i].length; j++) {
-				let obj = this.field.cells[i][j],
-					x = i * this.cellSize,
-					y = j * this.cellSize;
-				this.canvas.fillStyle = obj.currentColor;
+				let cell = this.field.cells[i][j];
+				let	x = i * this.cellSize;
+				let	y = j * this.cellSize;
+				let color = cell.currentColor;
+				if (!cell.owner && this.playersViewMode) {
+					color = 'gray';			
+				}	
+				this.canvas.fillStyle = color;
 				this.canvas.fillRect(x, y, 0.93 * this.cellSize, 0.93 * this.cellSize); //for making margins between cells
 			}
 		}
