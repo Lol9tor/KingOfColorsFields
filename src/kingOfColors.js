@@ -44,18 +44,18 @@ export default class KingOfColors {
 	};
 
 	checkNearestCells (cell, cellsArray) {
-		const newCellsArr = [],
-			x = cell.coords.x,
-			y = cell.coords.y,
-			mapCells = [
-				[1, 0],
-				[-1, 0],
-				[0, 1],
-				[0, -1]
-			];
+		const newCellsArr = [];
+		const	x = cell.coords.x;
+		const	y = cell.coords.y;
+		const	mapCells = [
+			[1, 0],
+			[-1, 0],
+			[0, 1],
+			[0, -1]
+		];
 		for (let i = 0; i < mapCells.length; i++) {
-			const nextX = x + mapCells[i][0],
-				nextY = y + mapCells[i][1];
+			const nextX = x + mapCells[i][0];
+			const	nextY = y + mapCells[i][1];
 			if (this.isCellExist(nextX, nextY, cellsArray)) {
 				const nextCell = cellsArray[nextX][nextY];
 				if (this.isNextCellFit(cell, nextCell)) {

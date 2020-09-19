@@ -39,7 +39,9 @@ export default class Drawer {
 		rootEl.appendChild(wrapperElement);
 
 		canvasEl.addEventListener('mousedown', this.handleMouseDown.bind(this));
+		canvasEl.addEventListener('touchstart', this.handleMouseDown.bind(this));
 		window.addEventListener('mouseup', this.handleMouseUp.bind(this));
+		window.addEventListener('touchend', this.handleMouseUp.bind(this));
 	}
 
 	handleMouseDown () {
