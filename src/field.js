@@ -1,12 +1,12 @@
 import Cell from './cell';
 import {getRandomArrayElement} from './utils/helper';
 import { colors, bonuses } from './config/config';
+console.log(colors);
 
 export default class Field {
 	constructor(w, h) {
 		this.width = w || 20;
 		this.height = h || 20;
-		this.colors = colors.gameField;
 		this.bonuses = bonuses;
 		this.FREQUANCY_BONUSES = 0.025;
 		this.cells = [];
@@ -17,7 +17,7 @@ export default class Field {
 		for (let i = 0; i < this.width; i++) {
 			this.cells[i] = [];
 			for (let j = 0; j < this.height; j++) {
-				let cell = new Cell({x: i, y: j}, getRandomArrayElement(this.colors));
+				let cell = new Cell({x: i, y: j}, getRandomArrayElement(colors.gameField));
 				this.cells[i].push(cell);
 			}
 		}

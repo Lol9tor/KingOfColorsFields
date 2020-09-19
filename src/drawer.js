@@ -1,3 +1,5 @@
+import { colors } from './config/config';
+
 export default class Drawer {
 	constructor(game, handlers) {
 		this.cellSize = 30;
@@ -58,9 +60,9 @@ export default class Drawer {
 				let cell = this.field.cells[i][j];
 				let	x = i * this.cellSize;
 				let	y = j * this.cellSize;
-				let color = cell.currentColor;
+				let color = cell.currentColor.main;
 				if (!cell.owner && this.playersViewMode) {
-					color = 'gray';			
+					color = cell.currentColor.blurred;			
 				}	
 				this.canvas.fillStyle = color;
 				this.canvas.fillRect(x, y, 0.93 * this.cellSize, 0.93 * this.cellSize); //for making margins between cells
@@ -71,14 +73,14 @@ export default class Drawer {
 	drawColorPanel () {
 		const panelButtonWrapper = document.createElement('div');
 		panelButtonWrapper.setAttribute('id', 'panelButtonWrapper');
-		for (let i = 0; i < this.field.colors.length; i++) {
-			const panelButton = document.createElement('div'),
-				currentColor = this.field.colors[i];
-			panelButton.setAttribute('data-color', currentColor);
+		for (let i = 0; i < colors.gameField.length; i++) {
+			const panelButton = document.createElement('div');
+			const	currentColor = colors.gameField[i];
+			panelButton.setAttribute('data-color', currentColor.name);
 			panelButton.style.height = this.cellSize * 1.75 + 'px';
 			panelButton.style.width = this.cellSize * 1.75 + 'px';
 			panelButton.style.lineHeight = this.cellSize * 1.75 + 'px';
-			panelButton.style.backgroundColor = currentColor;
+			panelButton.style.backgroundColor = currentColor.main;
 			if (this.game.getAvailableColors().includes(currentColor)){
 				panelButton.addEventListener('click', this.playerMove.bind(this));
 			} else {

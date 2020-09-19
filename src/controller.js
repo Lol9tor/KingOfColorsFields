@@ -21,8 +21,9 @@ class Controller {
 		this.drawer.render(this.currentPlayerTurn);
 	}
 
-	playerTurn (color) {
+	playerTurn (colorName) {
 		const availableColors = this.kingOfColors.getAvailableColors();
+		const color = availableColors.find((c) => c.name === colorName);
 		if (availableColors.includes(color)){
 			this.currentPlayerTurn.cells.forEach((c)=>c.currentColor = color);
 			this.currentPlayerTurn.cells = this.kingOfColors.grabCells(this.currentPlayerTurn.cells);

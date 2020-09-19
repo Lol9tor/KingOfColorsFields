@@ -1,5 +1,5 @@
-import difference from 'lodash/difference';
 import Field from './field';
+import { colors } from './config/config'
 import {getRandomArrayElement} from './utils/helper';
 
 export default class KingOfColors {
@@ -9,8 +9,10 @@ export default class KingOfColors {
 	}
 
 	addPlayer(player, initCell) {
-		const isPlayerInGame = !!this.players.find((p)=>player.user === p.user),
-		availableColors = this.getAvailableColors();
+		const isPlayerInGame = !!this.players.find((p)=>player.user === p.user);
+		const availableColors = this.getAvailableColors();
+		console.log(availableColors);
+		
 		if (!isPlayerInGame){
 			this.field.cells[initCell.x][initCell.y].currentColor = getRandomArrayElement(availableColors);
 			this.field.cells[initCell.x][initCell.y].owner = player.user;
@@ -20,8 +22,9 @@ export default class KingOfColors {
 	}
 
 	getAvailableColors () {
-		const colorsInUse = this.players.map((p)=>p.cells[0].currentColor);
-		return difference(this.field.colors, colorsInUse);
+		const colorsInUse = this.players.map((p)=>p.cells[0].currentColor.main);
+		
+		return colors.gameField.filter((c) => !colorsInUse.includes(c.main));
 	}
 
 	getNextPlayer (player) {

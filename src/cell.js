@@ -10,7 +10,7 @@ export default class Cell {
 
 export class InactiveCell extends Cell {
 	constructor() {
-		this.currentColor = colors.inactiveColor;
+		this.currentColor = colors.inactiveColor; // TODO color must be an object
 	}
 
 	set bonus(value) {
