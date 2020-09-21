@@ -1,4 +1,4 @@
-import { colors } from './config/config';
+import { colors, bonuses } from './config/config';
 
 export default class Drawer {
 	constructor(game, handlers) {
@@ -65,6 +65,11 @@ export default class Drawer {
 				let color = cell.currentColor.main;
 				if (!cell.owner && this.playersViewMode) {
 					color = cell.currentColor.blurred;			
+				}
+				if (cell.bonus) {
+					// this.canvas.textAlign = 'center';
+					// this.canvas.fillStyle = '#000000';
+					// this.canvas.fillText(bonuses.indexOf(cell.bonus), x - this.cellSize/2, y - this.cellSize/2);
 				}	
 				this.canvas.fillStyle = color;
 				this.canvas.fillRect(x, y, 0.93 * this.cellSize, 0.93 * this.cellSize); //for making margins between cells
@@ -103,6 +108,10 @@ export default class Drawer {
 		listWrapper.innerHTML = list.join('');
 		this.playersPanel.innerHTML = '';
 		this.playersPanel.appendChild(listWrapper);
+	}
+
+	drawWinner (leader) {
+		console.log(`${leader.user} win the game with ${leader.cells.length} cells`);
 	}
 
 	playerMove (e) {

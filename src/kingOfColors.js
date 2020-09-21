@@ -11,7 +11,6 @@ export default class KingOfColors {
 	addPlayer(player, initCell) {
 		const isPlayerInGame = !!this.players.find((p)=>player.user === p.user);
 		const availableColors = this.getAvailableColors();
-		console.log(availableColors);
 		
 		if (!isPlayerInGame){
 			this.field.cells[initCell.x][initCell.y].currentColor = getRandomArrayElement(availableColors);
@@ -25,6 +24,18 @@ export default class KingOfColors {
 		const colorsInUse = this.players.map((p)=>p.cells[0].currentColor.main);
 		
 		return colors.gameField.filter((c) => !colorsInUse.includes(c.main));
+	}
+
+	getAvailableCells () {
+		return this.field.cells.filter((cell) => !cell.owner);
+	}
+
+	getLeader () {
+		return this.players.reduce((memo, pl) => {
+			const cellsNumberMemo = memo ? memo.cells.length : 0;
+			const cellsNumberPlayer = pl.cells.length;
+			return cellsNumberPlayer > cellsNumberMemo ? pl : memo;
+		}, null)
 	}
 
 	getNextPlayer (player) {

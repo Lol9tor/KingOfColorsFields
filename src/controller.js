@@ -15,7 +15,8 @@ class Controller {
 		this.kingOfColors.addPlayer(new Player('Olya'), {x:this.kingOfColors.field.width-1, y: 0});
 		this.kingOfColors.addPlayer(new Player('Vasya'), {x:this.kingOfColors.field.width-1, y: this.kingOfColors.field.height-1});
 		this.kingOfColors.addPlayer(new Player('Petya'), {x:0, y: this.kingOfColors.field.height-1});
-	
+		this.kingOfColors.field.createBonuses();
+
 		this.currentPlayerTurn = this.kingOfColors.players[0];//getRandomArrayElement(this.kingOfColors.players).player;
 		this.drawer.initializeDrawing();
 		this.drawer.render(this.currentPlayerTurn);
@@ -28,8 +29,13 @@ class Controller {
 			this.currentPlayerTurn.cells.forEach((c)=>c.currentColor = color);
 			this.currentPlayerTurn.cells = this.kingOfColors.grabCells(this.currentPlayerTurn.cells);
 			this.currentPlayerTurn = this.kingOfColors.getNextPlayer(this.currentPlayerTurn);//next turn
-			console.log(this.kingOfColors.players);
+		
 			this.drawer.render(this.currentPlayerTurn);
+		}
+		
+		if (this.kingOfColors.getAvailableCells().length === 0) {
+			const leader = this.kingOfColors.getLeader();
+			this.drawer.drawWinner(leader);
 		}
 	}
 
